@@ -1,0 +1,29 @@
+{
+  "id": "rust-01-ownership",
+  "title": "Who Owns the Sword?",
+  "panels": [
+    { "art": "🗡️", "text": "A hero finds a legendary sword. Only ONE hero can hold it at a time." },
+    { "art": "🤝", "text": "The hero hands it to a friend. Now the friend owns it, and the hero's hands are empty!" },
+    { "art": "📦", "text": "In Rust this is a move: let b = a; The value goes to b, and a can no longer use it." },
+    { "art": "🧹", "text": "When the owner leaves (goes out of scope), the sword is cleaned up automatically. No leaks!" }
+  ],
+  "puzzle": {
+    "question": "Which line breaks the rules?",
+    "code": "let a = String::from(\"sword\");\nlet b = a;\nprintln!(\"{}\", a);",
+    "options": ["Line 1: creating a", "Line 2: let b = a;", "Line 3: println!"],
+    "hint": "Who is holding the sword after line 2?",
+    "correct": 2,
+    "explanation": "After line 2, the sword moved from a to b. Line 3 tries to use a, which no longer owns anything."
+  },
+  "apprentice": {
+    "name": "Pip",
+    "personality": "Cheerful, clueless, always asks 'but why?'",
+    "checklist": [
+      "Every value has exactly one owner",
+      "Assigning or passing a value moves ownership",
+      "The old owner can't use it after a move",
+      "When the owner goes out of scope, the value is freed",
+      "clone() makes a real copy if you need two"
+    ]
+  }
+}
